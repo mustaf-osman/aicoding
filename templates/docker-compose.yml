@@ -1,0 +1,33 @@
+# ── 本地开发 + 生产部署一体编排 ──
+# 本地: docker compose up
+# 生产: docker compose -f compose.yml -f compose.prod.yml up -d
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=development
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./:/app   # 本地开发热重载
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=change-me
+      - POSTGRES_DB=app
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

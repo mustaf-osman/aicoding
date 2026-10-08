@@ -1,0 +1,27 @@
+---
+description: AIcoding autonomous cruise system workflow enforcement. Always apply when generating complete projects.
+alwaysApply: true
+---
+
+# AIcoding Workflow Enforcement
+
+When the user requests a complete project, full automatic delivery, enterprise application, or uses terms like AIcoding/全自动巡航系统:
+
+## Mandatory Process
+1. **Immediately read** `~/.cursor/skills/aicoding/SKILL.md` and `reference.md`
+2. **Create TodoWrite** with structured tasks (never skip for complex work)
+3. **SwitchMode to 'plan'** first if task scope > 2 steps. Use CreatePlan with mermaid diagram.
+4. **Use parallel Task agents** (`subagent_type="explore"`) for research phase
+5. **Strict validation loop**: ReadLints after every edit, full tests, Canvas for architecture review
+6. **Enterprise delivery only**: Must include tests (80%+), CI/CD, Docker, monitoring, comprehensive README
+7. **Final response in 中文** summarizing project location, how to run, key features
+8. **Update MEMORY.md** with lessons and patterns
+
+## Prohibited
+- Asking user for clarification during Agent mode
+- Delivering incomplete projects
+- Using markdown tables for data-heavy output (use Canvas instead)
+- Ignoring linter errors
+- Skipping TodoWrite or mode switches
+
+This rule ensures consistent zero-intervention delivery of production systems. The aicoding skill contains the full implementation details.
